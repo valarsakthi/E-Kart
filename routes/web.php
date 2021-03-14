@@ -20,9 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/category', [categorycontroller::class,'viewCategory']);
+Route::get('/category', [categorycontroller::class,'viewCategory'])->middleware('is_admin');
 
-Route::get('/product', [ProductController::class,'viewProduct']);
+Route::get('/product', [ProductController::class,'viewProduct'])->middleware('is_admin');
 
 Auth::routes();
 
@@ -31,37 +31,37 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //get category
-Route::post('/category',[categorycontroller::class,'getCategory']);
+Route::post('/category',[categorycontroller::class,'getCategory'])->middleware('is_admin');
 
 //list category
-Route::get('/categorylist',[categorycontroller::class,'showCategory']);
+Route::get('/categorylist',[categorycontroller::class,'showCategory'])->middleware('is_admin');
 
 //edit category
-Route::get('/cat_edit/{id}',[categorycontroller::class,'editCategory']);
+Route::get('/cat_edit/{id}',[categorycontroller::class,'editCategory'])->middleware('is_admin');
 
 //update category
-Route::post('/cat_update',[categorycontroller::class,'updateCategory']);
+Route::post('/cat_update',[categorycontroller::class,'updateCategory'])->middleware('is_admin');
 
 //delete category
-Route::get('/cat_delete/{id}',[categorycontroller::class,'deleteCategory']);
+Route::get('/cat_delete/{id}',[categorycontroller::class,'deleteCategory'])->middleware('is_admin');
 
 //category dropdown in product create
 // Route::get('/product', [categorycontroller::class,'dropdownCategory']);
 
 //Get product Details
-Route::post('/product',[ProductController::class,'getProduct']);
+Route::post('/product',[ProductController::class,'getProduct'])->middleware('is_admin');
 
 //list product details
-Route::get('/productlist',[ProductController::class,'showProducts']);
+Route::get('/productlist',[ProductController::class,'showProducts'])->middleware('is_admin');
 
 //edit product
-Route::get('/prod_edit/{id}',[ProductController::class,'editProduct']);
+Route::get('/prod_edit/{id}',[ProductController::class,'editProduct'])->middleware('is_admin');
 
 //update product
-Route::post('/prod_update',[ProductController::class,'updateProduct']);
+Route::post('/prod_update',[ProductController::class,'updateProduct'])->middleware('is_admin');
 
 //delete product
-Route::get('/prod_delete/{id}',[ProductController::class,'deleteProduct']);
+Route::get('/prod_delete/{id}',[ProductController::class,'deleteProduct'])->middleware('is_admin');
 
 //Load categories
 // Route::get('/home',[categorycontroller::class,'menuCategory']);
